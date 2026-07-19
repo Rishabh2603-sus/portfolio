@@ -80,7 +80,11 @@ export function useTheme() {
     };
 
     if (document.startViewTransition) {
-      document.startViewTransition(apply);
+      document.documentElement.classList.add("theme-transitioning");
+      const transition = document.startViewTransition(apply);
+      transition.finished.finally(() => {
+        document.documentElement.classList.remove("theme-transitioning");
+      });
     } else {
       apply();
     }

@@ -360,12 +360,10 @@ body {
 @keyframes reveal {
   from {
     clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%));
-    filter: blur(3px);
   }
 
   to {
-    clip-path: circle(140% at var(--reveal-x, 50%) var(--reveal-y, 50%));
-    filter: blur(0);
+    clip-path: circle(150% at var(--reveal-x, 50%) var(--reveal-y, 50%));
   }
 }
 
