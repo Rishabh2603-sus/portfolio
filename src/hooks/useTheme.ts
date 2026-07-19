@@ -81,6 +81,10 @@ export function useTheme() {
 
     if (document.startViewTransition) {
       document.documentElement.classList.add("theme-transitioning");
+      // Force a layout recalculation so the browser registers the class 
+      // BEFORE capturing the start state of the view transition.
+      window.getComputedStyle(document.documentElement).getPropertyValue('opacity');
+      
       const transition = document.startViewTransition(apply);
       transition.finished.finally(() => {
         document.documentElement.classList.remove("theme-transitioning");

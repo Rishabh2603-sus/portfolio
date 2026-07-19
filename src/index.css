@@ -363,7 +363,7 @@ body {
   }
 
   to {
-    clip-path: circle(150% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+    clip-path: circle(150vmax at var(--reveal-x, 50%) var(--reveal-y, 50%));
   }
 }
 
