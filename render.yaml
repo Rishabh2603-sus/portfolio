@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: rishabh-portfolio
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
