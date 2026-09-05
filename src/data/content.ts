@@ -1,10 +1,11 @@
 export const profile = {
-  name: "Rishabh Sharma",
+  name: "Rishabh Sharma A",
   role: "Aspiring Software Engineer",
   tagline:
     "I build full-stack, mobile, and AI-curious projects — and I'm always looking for the next thing to learn.",
   location: "Chennai, India",
   email: "rishabh.exe26@gmail.com",
+  phone: "+91 8072652048",
   socials: {
     connect: [
       { label: "LinkedIn", url: "https://www.linkedin.com/in/rishabh-sharma-415088356/" },
@@ -21,12 +22,12 @@ export const profile = {
 export const about = {
   paragraphs: [
     "I'm a Computer Science student at R.M.D Engineering College, building software, web, and mobile projects on the side while I learn. I pick up new tools quickly and I'm comfortable adapting as the stack changes underneath me.",
-    "I'm especially curious about applied AI and open source, and I like projects that combine a few disciplines at once — recently that's meant pairing a native mobile UI with a Python backend and a proper design pass in Figma.",
+    "I'm especially curious about applied AI and open source, and I like projects that combine a few disciplines at once — recently that's meant pairing a native mobile UI with a Python backend and building AI system copilots in Electron and Swift.",
     "Outside of code, I'm an active member of the Google Developer Program.",
   ],
 };
 
-export const languages = ["English", "Hindi", "Tamil", "French", "Japanese"];
+export const languages = ["English (Professional)", "Hindi (Native)", "Tamil (Highly Proficient)", "French (Basic)", "Japanese (Learning)"];
 
 export interface Project {
   id: string;
@@ -37,16 +38,23 @@ export interface Project {
   url?: string;
 }
 
-// PLACEHOLDER: only one real project on file as of this build.
-// Add more entries here — river cleaning bot, smart helmet system, etc. — when copy is ready.
 export const projects: Project[] = [
+  {
+    id: "vorssaint",
+    title: "Vorssaint — macOS system monitor & AI copilot",
+    year: "2025",
+    summary:
+      "A real-time system monitoring dashboard (CPU, memory, battery, network, top processes) using Electron, Node.js, system information library, and native Swift, integrated with Gemini API and Ollama for local/cloud AI copilot capabilities.",
+    tags: ["Electron", "Node.js", "Gemini API", "Ollama", "Swift"],
+    url: "https://github.com/Rishabh2603-sus",
+  },
   {
     id: "tidal",
     title: "Tidal — macOS music player",
     year: "2025",
     summary:
-      "A vinyl-turntable inspired macOS music player: a SwiftUI client talking to a Python backend for streaming, with search to query and play songs from the library.",
-    tags: ["Swift", "SwiftUI", "Python", "REST API", "Figma"],
+      "A vinyl-turntable inspired macOS music player: a SwiftUI client talking to a Python backend for streaming audio with real-time playback controls and library search.",
+    tags: ["Swift", "SwiftUI", "Python", "REST API", "Xcode", "Figma"],
     url: "https://github.com/Rishabh2603-sus",
   },
 ];
@@ -62,7 +70,7 @@ export const skillGroups: { label: string; items: string[] }[] = [
     items: ["Node.js", "Express.js", "REST APIs", "MongoDB", "MySQL", "JWT / OAuth", "Postman"],
   },
   { label: "Computer vision", items: ["OpenCV", "MediaPipe"] },
-  { label: "Tools & platforms", items: ["Git & GitHub", "Docker", "AWS", "Linux", "VS Code", "Xcode"] },
+  { label: "Tools & platforms", items: ["Git & GitHub", "Docker", "AWS", "Linux", "VS Code", "Xcode", "Blender"] },
 ];
 
 export interface ExperienceItem {
@@ -73,7 +81,6 @@ export interface ExperienceItem {
   description: string;
 }
 
-// Renamed from "Experience" to "Involvement" — no formal job/internship on file yet.
 export const involvement: ExperienceItem[] = [
   {
     id: "inv-1",
@@ -83,11 +90,18 @@ export const involvement: ExperienceItem[] = [
     description: "Engaging with developer communities on emerging technologies, AI tooling, and open-source practices.",
   },
   {
-    id: "inv-2",
-    role: "Software Engineer Certification",
+    id: "inv-cert-1",
+    role: "Software Engineer & Software Engineer Intern Certifications",
     org: "HackerRank",
     period: "2024",
-    description: "Certified on core software engineering fundamentals through HackerRank's assessment program.",
+    description: "Certified on core software engineering fundamentals, data structures, and algorithms through HackerRank.",
+  },
+  {
+    id: "inv-cert-2",
+    role: "Claude 101 & AI Fluency for Students",
+    org: "Anthropic Education",
+    period: "2024",
+    description: "Completed Anthropic Education certifications on LLM prompting, AI tools, and applied AI workflows.",
   },
 ];
 
