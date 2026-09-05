@@ -16,14 +16,6 @@ export default function Projects() {
         {projects.map((project, index) => (
           <Reveal as="article" key={project.id} delay={index * 80} className={styles.projectCard}>
             <a href={project.url} className={styles.projectLink}>
-              {project.image && (
-                <img
-                  src={project.image}
-                  alt={`${project.title} preview`}
-                  className={styles.projectImage}
-                  loading="lazy"
-                />
-              )}
               <div className={styles.projectTop}>
                 <span className={styles.projectYear}>{project.year}</span>
                 <span className={styles.projectArrow} aria-hidden="true">↗</span>
