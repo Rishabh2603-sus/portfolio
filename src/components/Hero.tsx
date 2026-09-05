@@ -8,6 +8,9 @@ export default function Hero() {
 
   return (
     <section id="intro" className={`section ${styles.hero}`}>
+      <Reveal className={styles.heroAvatarWrap}>
+        <img src="/avatar.jpg" alt="Rishabh Sharma A" className={styles.heroAvatar} />
+      </Reveal>
       <Reveal as="p" className="eyebrow">
         {profile.location} · {time} local
       </Reveal>
