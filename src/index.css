@@ -245,16 +245,16 @@ button:focus-visible {
 
 ::view-transition-new(root) {
   z-index: 2;
-  animation: reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+  animation: reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: clip-path;
 }
 
 @keyframes reveal {
-  from {
-    clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+  0% {
+    clip-path: circle(0px at var(--reveal-x, 50%) var(--reveal-y, 50%));
   }
 
-  to {
+  100% {
     clip-path: circle(150vmax at var(--reveal-x, 50%) var(--reveal-y, 50%));
   }
 }

@@ -68,7 +68,12 @@ export function useTheme() {
 
   function toggle(e?: React.MouseEvent) {
     if (e) {
-      originRef.current = { x: e.clientX, y: e.clientY };
+      if (e.clientX === 0 && e.clientY === 0 && e.currentTarget) {
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+        originRef.current = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+      } else {
+        originRef.current = { x: e.clientX, y: e.clientY };
+      }
     }
     const next: Theme = theme === "dark" ? "light" : "dark";
 
