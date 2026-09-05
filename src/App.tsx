@@ -7,13 +7,14 @@ import Skills from "./components/Skills";
 import Involvement from "./components/Involvement";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
+import styles from "./components/App.module.css";
 
 export default function App() {
   return (
     <>
       <ScrollProgress />
       <NavRail />
-      <main id="main-content" className="app-main">
+      <main id="main-content" className={styles.appMain}>
         <Hero />
         <About />
         <Projects />
@@ -22,29 +23,9 @@ export default function App() {
         <Education />
         <Contact />
       </main>
-      <footer className="app-footer">
+      <footer className={styles.appFooter}>
         <p>Built with React and TypeScript.</p>
       </footer>
-
-      <style>{`
-        .app-footer {
-          max-width: var(--container);
-          margin: 0 auto;
-          padding: 2rem var(--gutter) 3rem;
-          font-family: var(--font-mono);
-          font-size: 0.75rem;
-          color: var(--text-muted);
-        }
-        .app-main {
-          padding-left: clamp(0px, 8vw, 7rem);
-        }
-        @media (max-width: 860px) {
-          .app-main {
-            padding-left: 0;
-            padding-top: 3.25rem;
-          }
-        }
-      `}</style>
     </>
   );
 }

@@ -10,10 +10,15 @@
     <meta property="og:title" content="Rishabh Sharma — Portfolio" />
     <meta property="og:description" content="Aspiring Software Engineer. CS student building full-stack, mobile, and AI-curious projects." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-preview.png" />
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Rishabh Sharma — Portfolio" />
     <meta name="twitter:description" content="Aspiring Software Engineer. CS student building full-stack, mobile, and AI-curious projects." />
+    <meta name="twitter:image" content="/og-preview.png" />
+
+    <meta name="theme-color" content="#ece3d5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#17150f" media="(prefers-color-scheme: dark)" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,6 +30,19 @@
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
     <div id="root"></div>
+    <!--
+      Blocking script: sets data-theme BEFORE React hydrates to prevent
+      a flash of the wrong theme (FOUC). Mirrors the logic in useTheme.ts.
+    -->
+    <script>
+      (function () {
+        var mode = localStorage.getItem("themeMode") || "auto";
+        var hour = new Date().getHours();
+        var theme =
+          mode === "auto" ? (hour >= 6 && hour < 18 ? "light" : "dark") : mode;
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

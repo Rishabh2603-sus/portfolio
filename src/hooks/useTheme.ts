@@ -80,14 +80,14 @@ export function useTheme() {
     };
 
     if (document.startViewTransition) {
-      document.documentElement.classList.add("theme-transitioning");
-      // Force a layout recalculation so the browser registers the class 
-      // BEFORE capturing the start state of the view transition.
-      window.getComputedStyle(document.documentElement).getPropertyValue('opacity');
-      
-      const transition = document.startViewTransition(apply);
+      const transition = document.startViewTransition(() => {
+        // Disable CSS transitions so the VT captures the final state,
+        // not a mid-transition frame (which causes the halfway glitch).
+        document.documentElement.classList.add("no-transitions");
+        apply();
+      });
       transition.finished.finally(() => {
-        document.documentElement.classList.remove("theme-transitioning");
+        document.documentElement.classList.remove("no-transitions");
       });
     } else {
       apply();

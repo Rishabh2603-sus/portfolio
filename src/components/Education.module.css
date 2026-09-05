@@ -1,0 +1,50 @@
+.educationHeading {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin: 0.5rem 0 2.5rem;
+}
+
+.educationCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.educationCard {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+  max-width: 34rem;
+  transition: border-color 0.25s ease;
+}
+
+.educationCard:hover {
+  border-color: var(--border-strong);
+}
+
+.educationTop {
+  margin-bottom: 0.6rem;
+}
+
+.educationPeriod {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.educationDegree {
+  font-size: 1.2rem;
+  font-weight: 480;
+}
+
+.educationOrg {
+  font-size: 0.92rem;
+  color: var(--accent-brick);
+  margin-top: 0.25rem;
+}
+
+.educationDescription {
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

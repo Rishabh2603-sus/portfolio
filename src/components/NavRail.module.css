@@ -1,0 +1,127 @@
+.navRail {
+  position: fixed;
+  top: 50%;
+  left: clamp(1rem, 3vw, 2.5rem);
+  transform: translateY(-50%);
+  z-index: 40;
+}
+
+.navRail ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.navRail a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.15rem 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.navIndex {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+.navTick {
+  width: 14px;
+  height: 1.5px;
+  background: var(--border-strong);
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.navLabel {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity 0.25s ease, max-width 0.25s ease;
+}
+
+.navRail a:hover .navLabel,
+.navRail a:focus-visible .navLabel,
+.navRail a:hover .navIndex,
+.navRail a:focus-visible .navIndex {
+  opacity: 1;
+  max-width: 140px;
+  width: auto;
+}
+
+.isActive {
+  color: var(--text-primary);
+}
+
+.isActive .navTick {
+  background: var(--accent);
+}
+
+.isActive .navLabel {
+  opacity: 1;
+  max-width: 140px;
+}
+
+@media (max-width: 860px) {
+  .navRail {
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    padding: 0.85rem var(--gutter);
+    background: var(--nav-glass);
+    backdrop-filter: blur(6px);
+    border-bottom: 0.5px solid var(--border);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black var(--gutter),
+      black calc(100% - var(--gutter)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black var(--gutter),
+      black calc(100% - var(--gutter)),
+      transparent 100%
+    );
+  }
+
+  .navRail ol {
+    flex-direction: row;
+    gap: 1.1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .navRail ol::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navRail a {
+    flex-shrink: 0;
+  }
+
+  .navIndex,
+  .navTick {
+    display: none;
+  }
+
+  .navLabel {
+    opacity: 1;
+    max-width: none;
+  }
+
+  .isActive {
+    color: var(--accent);
+  }
+}

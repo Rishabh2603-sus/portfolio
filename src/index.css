@@ -21,6 +21,9 @@
   --container: 1080px;
   --gutter: clamp(1.5rem, 5vw, 4rem);
 
+  /* Mobile nav glass background — overridden in dark mode */
+  --nav-glass: rgba(236, 227, 213, 0.92);
+
   color-scheme: light;
 }
 
@@ -190,6 +193,10 @@ button:focus-visible {
   --accent-hover: #a3c288;
   --accent-soft: #2b3322;
   --accent-brick: #c97456;
+
+  --nav-glass: rgba(23, 21, 15, 0.92);
+
+  color-scheme: dark;
 }
 
 :root[data-theme="dark"] body::before {
@@ -197,149 +204,32 @@ button:focus-visible {
   background-image: radial-gradient(rgba(240, 234, 217, 0.06) 1px, transparent 1px);
 }
 
-/* Fallback for browsers without View Transitions (Firefox, older Safari) */
-body {
-  transition: background-color 0.4s ease, color 0.4s ease;
+/* Fallback smooth transition ONLY for browsers without View Transitions
+   (Firefox, older Safari). In VT-capable browsers (Chrome, Edge) the
+   clip-path reveal handles everything — a concurrent body transition
+   causes the VT to capture a mid-transition "new" state, producing a
+   visible pop/glitch ~60% through the animation. */
+@supports not (view-transition-name: none) {
+  body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
 }
 
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-:root[data-theme="dark"] {
-  --bg: #17150f;
-  --bg-alt: #1e1b14;
-  --surface: #211e17;
-  --border: #35301f;
-  --border-strong: #4a4327;
-
-  --text-primary: #f0ead9;
-  --text-secondary: #c2b89e;
-  --text-muted: #8a8065;
-
-  --accent: #8fae74;
-  --accent-hover: #a3c288;
-  --accent-soft: #2b3322;
-  --accent-brick: #c97456;
-}
-
-:root[data-theme="dark"] body::before {
-  opacity: 0.25;
-  background-image: radial-gradient(rgba(240, 234, 217, 0.06) 1px, transparent 1px);
-}
-
-/* Fallback for browsers without View Transitions (Firefox, older Safari) */
-body {
-  transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-:root[data-theme="dark"] {
-  --bg: #17150f;
-  --bg-alt: #1e1b14;
-  --surface: #211e17;
-  --border: #35301f;
-  --border-strong: #4a4327;
-
-  --text-primary: #f0ead9;
-  --text-secondary: #c2b89e;
-  --text-muted: #8a8065;
-
-  --accent: #8fae74;
-  --accent-hover: #a3c288;
-  --accent-soft: #2b3322;
-  --accent-brick: #c97456;
-}
-
-:root[data-theme="dark"] body::before {
-  opacity: 0.25;
-  background-image: radial-gradient(rgba(240, 234, 217, 0.06) 1px, transparent 1px);
-}
-
-/* Fallback for browsers without View Transitions (Firefox, older Safari) */
-body {
-  transition: background-color 0.4s ease, color 0.4s ease;
-}
-
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-:root[data-theme="dark"] {
-  --bg: #17150f;
-  --bg-alt: #1e1b14;
-  --surface: #211e17;
-  --border: #35301f;
-  --border-strong: #4a4327;
-
-  --text-primary: #f0ead9;
-  --text-secondary: #c2b89e;
-  --text-muted: #8a8065;
-
-  --accent: #8fae74;
-  --accent-hover: #a3c288;
-  --accent-soft: #2b3322;
-  --accent-brick: #c97456;
-}
-
-:root[data-theme="dark"] body::before {
-  opacity: 0.25;
-  background-image: radial-gradient(rgba(240, 234, 217, 0.06) 1px, transparent 1px);
-}
-
-/* Guaranteed smooth baseline — every element, not just body.
-   This is the real fix for the "instant jitter": cards, buttons,
-   borders etc. all use var(--surface)/var(--border)/etc. and were
-   snapping instantly because only <body> had a transition. */
-*,
-*::before,
-*::after {
-  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, fill 0.35s ease, stroke 0.35s ease;
-}
-
-/* ============================================================
-   DARK MODE
-   ============================================================ */
-:root[data-theme="dark"] {
-  --bg: #17150f;
-  --bg-alt: #1e1b14;
-  --surface: #211e17;
-  --border: #35301f;
-  --border-strong: #4a4327;
-
-  --text-primary: #f0ead9;
-  --text-secondary: #c2b89e;
-  --text-muted: #8a8065;
-
-  --accent: #8fae74;
-  --accent-hover: #a3c288;
-  --accent-soft: #2b3322;
-  --accent-brick: #c97456;
-}
-
-:root[data-theme="dark"] body::before {
-  opacity: 0.25;
-  background-image: radial-gradient(rgba(240, 234, 217, 0.06) 1px, transparent 1px);
-}
-
-/* Guaranteed smooth baseline — every element, not just body.
-   This is the real fix for the "instant jitter": cards, buttons,
-   borders etc. all use var(--surface)/var(--border)/etc. and were
-   snapping instantly because only <body> had a transition. */
-*,
-*::before,
-*::after {
-  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, fill 0.35s ease, stroke 0.35s ease;
+/* Kill all CSS transitions during an active View Transition so the
+   browser captures the final (not mid-transition) state. Applied via
+   JS in the VT callback, removed on transition.finished. */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition-duration: 0s !important;
 }
 
 /* ============================================================
    NATIVE-STYLE REVEAL
    clip-path circle expansion — the reliable, GPU-accelerated
-   technique. mask-size animation was tried and dropped: it's
-   inconsistently smooth across browsers. This is simpler and
-   actually smooth everywhere View Transitions are supported.
-   A quick blur-to-sharp pass on the new layer softens the edge
-   without needing an animated mask.
+   technique. The View Transition API already handles the full
+   visual crossfade, so we do NOT need a universal * transition.
    ============================================================ */
 ::view-transition-old(root),
 ::view-transition-new(root) {
@@ -353,7 +243,7 @@ body {
 
 ::view-transition-new(root) {
   z-index: 2;
-  animation: reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: reveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%));
 }
 
@@ -371,12 +261,6 @@ body {
   ::view-transition-new(root) {
     animation: none;
     clip-path: none;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition: none;
   }
 }
 

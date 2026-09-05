@@ -1,0 +1,83 @@
+.involvementHeading {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin: 0.5rem 0 2.75rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8.5rem;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 1px;
+  background: var(--border);
+}
+
+.timelineItem {
+  display: grid;
+  grid-template-columns: 8rem 1.5rem 1fr;
+  gap: 0.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+.timelinePeriod {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-top: 0.2rem;
+}
+
+.timelineDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 0.35rem;
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timelineRole {
+  font-size: 1.15rem;
+  font-weight: 480;
+}
+
+.timelineOrg {
+  font-size: 0.92rem;
+  color: var(--accent-brick);
+  margin-top: 0.2rem;
+}
+
+.timelineDescription {
+  margin-top: 0.6rem;
+  color: var(--text-secondary);
+  max-width: 34rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .timeline::before {
+    left: 0.4rem;
+  }
+
+  .timelineItem {
+    grid-template-columns: 1.5rem 1fr;
+  }
+
+  .timelinePeriod {
+    grid-column: 1 / -1;
+    padding-top: 0;
+  }
+}

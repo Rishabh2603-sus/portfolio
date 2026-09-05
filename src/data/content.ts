@@ -35,6 +35,7 @@ export interface Project {
   summary: string;
   tags: string[];
   url?: string;
+  image?: string;
 }
 
 // PLACEHOLDER: only one real project on file as of this build.
@@ -48,6 +49,7 @@ export const projects: Project[] = [
       "A vinyl-turntable inspired macOS music player: a SwiftUI client talking to a Python backend for streaming, with search to query and play songs from the library.",
     tags: ["Swift", "SwiftUI", "Python", "REST API", "Figma"],
     url: "https://github.com/Rishabh2603-sus",
+    image: "/tidal-preview.png",
   },
 ];
 

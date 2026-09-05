@@ -1,8 +1,8 @@
 import type { MouseEvent } from "react";
-import { useTheme } from "../hooks/useTheme";
+import { useThemeContext } from "../context/ThemeContext";
 
 export default function ThemeToggle() {
-  const { theme, toggle } = useTheme();
+  const { theme, toggle } = useThemeContext();
 
   const handleClick = (e: MouseEvent) => toggle(e);
 

@@ -1,0 +1,19 @@
+.appFooter {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 2rem var(--gutter) 3rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.appMain {
+  padding-left: clamp(0px, 8vw, 7rem);
+}
+
+@media (max-width: 860px) {
+  .appMain {
+    padding-left: 0;
+    padding-top: 3.25rem;
+  }
+}
