@@ -103,3 +103,7 @@
 .contactSocialsCoding a:hover {
   color: var(--accent-brick);
 }
+
+.contactEmail:active, .contactSocialsPrimary a:active {
+  transform: scale(0.96);
+}

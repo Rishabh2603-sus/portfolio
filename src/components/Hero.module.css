@@ -94,3 +94,19 @@
   color: var(--accent-brick);
   border-color: var(--accent-brick);
 }
+
+.heroCta:active, .heroResume:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 860px) {
+  .hero {
+    align-items: center;
+    text-align: center;
+    padding-top: 4rem;
+  }
+  
+  .heroActions {
+    justify-content: center;
+  }
+}
