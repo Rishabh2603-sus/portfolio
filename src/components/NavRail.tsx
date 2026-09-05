@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import ThemeToggle from "./ThemeToggle";
@@ -22,6 +23,39 @@ const sectionIds = items.map((item) => item.id);
 
 export default function NavRail() {
   const active = useScrollSpy(sectionIds);
+  const listRef = useRef<HTMLOListElement>(null);
+  const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({ opacity: 0 });
+
+  useEffect(() => {
+    const updateIndicator = () => {
+      const list = listRef.current;
+      if (!list) return;
+
+      const activeEl = list.querySelector(`a[href="#${active}"]`) as HTMLElement;
+      if (!activeEl) {
+        setIndicatorStyle({ opacity: 0 });
+        return;
+      }
+
+      // Calculate relative position within the ol
+      setIndicatorStyle({
+        left: `${activeEl.offsetLeft}px`,
+        top: `${activeEl.offsetTop}px`,
+        width: `${activeEl.offsetWidth}px`,
+        height: `${activeEl.offsetHeight}px`,
+        opacity: 1,
+      });
+
+      if (window.innerWidth <= 860) {
+        const scrollLeft = activeEl.offsetLeft - list.offsetWidth / 2 + activeEl.offsetWidth / 2;
+        list.scrollTo({ left: scrollLeft, behavior: "smooth" });
+      }
+    };
+
+    updateIndicator();
+    window.addEventListener("resize", updateIndicator);
+    return () => window.removeEventListener("resize", updateIndicator);
+  }, [active]);
 
   const handleClick = (id: string) => (e: MouseEvent) => {
     e.preventDefault();
@@ -30,7 +64,8 @@ export default function NavRail() {
 
   return (
     <nav className={styles.navRail} aria-label="Section navigation">
-      <ol>
+      <ol ref={listRef}>
+        <div className={styles.navHighlight} style={indicatorStyle} />
         {items.map((item, index) => {
           const isActive = active === item.id;
           return (

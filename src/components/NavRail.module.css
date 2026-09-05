@@ -70,6 +70,10 @@
   max-width: 140px;
 }
 
+.navHighlight {
+  display: none;
+}
+
 @media (max-width: 860px) {
   .navRail {
     top: auto;
@@ -96,10 +100,20 @@
     scrollbar-width: none;
     padding-right: 0.8rem;
     border-right: 1px solid var(--border);
+    position: relative;
   }
 
   .navRail ol::-webkit-scrollbar {
     display: none;
+  }
+
+  .navHighlight {
+    display: block;
+    position: absolute;
+    background: var(--bg-alt);
+    border-radius: 999px;
+    z-index: -1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .navRail a {
@@ -125,6 +139,5 @@
 
   .isActive {
     color: var(--accent);
-    background: var(--bg-alt);
   }
 }
